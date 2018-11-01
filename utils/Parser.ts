@@ -30,7 +30,7 @@ export default class Parser extends Array<ParseElement> {
                             traceTable[0][j] = this[i].Result.getTag();
                         }
                     }
-                    result.push(this[i].Result.createInstance(matches[0]));
+                    result.push(this[i].Result.createInstance(matches[0], pos, 0));
                 }
 
                 temp = temp.substring(pos + matches[0].length - 1);

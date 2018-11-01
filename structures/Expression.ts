@@ -1,5 +1,6 @@
 import Component from './Component';
 import Null from '../operands/Null';
+import Parser from '../utils/Parser';
 /**
  * Expression in language
  */
@@ -14,6 +15,15 @@ export default class Expression extends Component {
      */
     private _listComp: Array<Component> = new Array<Component>();
 
+    public get ListComp(): Array<Component> {
+        return this._listComp;
+    }
+
+    private _parser: Parser = new Parser();
+    public set Parser(parser: Parser) {
+        this._parser = parser;
+    }
+
     constructor(raw: string = "") {
         super();
         this._raw = raw;
@@ -25,6 +35,7 @@ export default class Expression extends Component {
     }
 
     public execute(): Component {
+        this._listComp = this._parser.execute(this._raw);
         return new Null();
     }
 
